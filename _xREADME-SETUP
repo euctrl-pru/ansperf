@@ -5,8 +5,8 @@ I. setup git and posit cloud
 * create new project in posit.cloud selecting "from github"
 * on posit.cloud: rename project.Rproj to packagename.Rproj
 * on posit.cloud: need to install utility packages
-  + install.packages(c("roxygen2","devtools","usethis","testthat"))
-  + install.packages("tidyverse")
+  + install.packages(c("roxygen2","devtools","usethis","testthat", "pkgdown"))
+  + install.packages("tidyverse", "arrow")
 * configure package
   + usethis::use_description(fields = list(Package = "ansperf"))
   + usethis::edit_file("DESCRIPTION") # edit as appropriate
@@ -18,12 +18,19 @@ I. setup git and posit cloud
 * go to Build tab (after posit.cloud restarted and shows it)
 
 hook up posit.cloud and github with PAT
-* run usethis::git_siterep()
+* run to check: usethis::git_siterep()
+  then walk through it to clean the configs
 * (if needed, set) usethis::use_git_config(user.name = "as-appropriate", user.email = "whatevername@org")
 * usethis::git_vaccinate() # good practice shielding specs
 * setup PAT
   + usethis::create_github_token() 
   +  gitcreds::gitcreds_set() # paste token, gitcreds installed with {usethis}
+
+setup packagedown
+* Run once to configure your package to use pkgdown
+  usethis::use_pkgdown()
+* (modify _pkgdown.yml)
+* setup pkgdown workflow: usethis::use_pkgdown_github_pages()
 
 create functions
 * usethis::use_r("function-name-file")

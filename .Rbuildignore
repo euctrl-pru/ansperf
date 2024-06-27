@@ -3,3 +3,7 @@
 ^ansperf\.Rcheck$
 ^ansperf.*\.tar\.gz$
 ^ansperf.*\.tgz$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
+^\.github$

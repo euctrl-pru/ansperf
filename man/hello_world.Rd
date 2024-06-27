@@ -9,6 +9,9 @@ hello_world(.name)
 \arguments{
 \item{.name}{}
 }
+\value{
+greeting phrase with name
+}
 \description{
 hello_world returns greeting with name
 }

@@ -2,11 +2,11 @@
 #'
 #' @param .name 
 #'
-#' @return
+#' @return greeting phrase with name
 #' @export
 #'
 #' @examples
 hello_world <- function(.name){
-  greeting <- paste0("Hello, my ruler ", .name)
+  greeting <- paste0("Hello, my highness ", .name)
   return(greeting)
 }

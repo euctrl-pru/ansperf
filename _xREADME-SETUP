@@ -17,6 +17,19 @@ I. setup git and posit cloud
   + OK and close Project Options
 * go to Build tab (after posit.cloud restarted and shows it)
 
+hook up posit.cloud and github with PAT
+* run usethis::git_siterep()
+* (if needed, set) usethis::use_git_config(user.name = "as-appropriate", user.email = "whatevername@org")
+* usethis::git_vaccinate() # good practice shielding specs
+* setup PAT
+  + usethis::create_github_token() 
+  +  gitcreds::gitcreds_set() # paste token, gitcreds installed with {usethis}
+
+create functions
+* usethis::use_r("function-name-file")
+* CTRL+SHIFT+b (to build package)
+* CTRL+SHIFT+l (to load and test function)
+
 To build a Source Package do the following:
 
     Create a new folder tmp

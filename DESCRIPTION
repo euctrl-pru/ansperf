@@ -1,0 +1,13 @@
+Package: ansperf
+Title: Operational Performance Benchmarking with R
+Version: 0.0.0.9000
+Authors@R: 
+    person("Rainer", "Koelle", , "rainer.koelle@eurocontrol.int", role = c("aut", "cre"),
+           comment = c(ORCID = "YOUR-ORCID-ID"))
+Description: Utility functions in support of the bi-regional and multi-regional benchmarking.
+    Implements the ICAO GANP KPIs and associated PBWG or bi-lateral variants.
+License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
+    license
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.1

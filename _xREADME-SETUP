@@ -1,0 +1,24 @@
+Simple log to document steps setting up a package repo on github and link it to posit.cloud
+
+I. setup git and posit cloud
+* create github repo (i.e. ansperf at org github)
+* create new project in posit.cloud selecting "from github"
+* on posit.cloud: rename project.Rproj to packagename.Rproj
+* on posit.cloud: need to install utility packages
+  + install.packages(c("roxygen2","devtools","usethis","testthat"))
+  + install.packages("tidyverse")
+* configure package
+  + usethis::use_description(fields = list(Package = "ansperf"))
+  + usethis::edit_file("DESCRIPTION") # edit as appropriate
+* setup environment
+  + Tools >> Project Options >> Build Tools
+  + select Package (from drop-down)
+  + select Create documentation with Roxygen, activate all options
+  + OK and close Project Options
+* go to Build tab (after posit.cloud restarted and shows it)
+
+To build a Source Package do the following:
+
+    Create a new folder tmp
+    devtools::build(path = "tmp")
+    The resulting file, e.g. mypkg_0.0.0.9000.tar.gz can be downloaded to your computer.

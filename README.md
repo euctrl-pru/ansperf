@@ -1,16 +1,25 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# ansperf
+# Operational ANS Performance with R
 
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of ansperf is to …
+The goal of `{ansperf}` is to provide a enable interested stakeholders
+to undertake a standardised operational performance analysis in
+accordance with the ICAO Global Air Navigation Plan and/or variants used
+by the international performance benchmarking community.
+
+The package is based on the work of the Performance Section of DECEA
+Brazil and the Performance Review Unit of EUROCONTROL.
+
+This is an initial setup. Thus, the content is heavily under
+development. Please come back for any updates.
 
 ## Installation
 
-You can install the development version of ansperf from
+You can install the development version of the `{ansperf}` package from
 [GitHub](https://github.com/) with:
 
 ``` r

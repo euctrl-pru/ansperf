@@ -31,6 +31,7 @@ setup packagedown
   usethis::use_pkgdown()
 * (modify _pkgdown.yml)
 * setup pkgdown workflow: usethis::use_pkgdown_github_pages()
+* usethis::use_readme_rmd()
 
 create functions
 * usethis::use_r("function-name-file")

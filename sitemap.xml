@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://euctrl-pru.github.io/ansperf/404.html</loc>
+  </url>
+  <url>
+    <loc>https://euctrl-pru.github.io/ansperf/authors.html</loc>
+  </url>
+  <url>
+    <loc>https://euctrl-pru.github.io/ansperf/index.html</loc>
+  </url>
+  <url>
+    <loc>https://euctrl-pru.github.io/ansperf/reference/colspec.html</loc>
+  </url>
+  <url>
+    <loc>https://euctrl-pru.github.io/ansperf/reference/hello_world.html</loc>
+  </url>
+  <url>
+    <loc>https://euctrl-pru.github.io/ansperf/reference/index.html</loc>
+  </url>
+  <url>
+    <loc>https://euctrl-pru.github.io/ansperf/reference/load_apdf.html</loc>
+  </url>
+  <url>
+    <loc>https://euctrl-pru.github.io/ansperf/reference/make_nice_names_apdf.html</loc>
+  </url>
+  <url>
+    <loc>https://euctrl-pru.github.io/ansperf/reference/read_apdf.html</loc>
+  </url>
+  <url>
+    <loc>https://euctrl-pru.github.io/ansperf/reference/trim_ganp_cols.html</loc>
+  </url>
+</urlset>

@@ -27,17 +27,39 @@ You can install the development version of the `{ansperf}` package from
 devtools::install_github("euctrl-pru/ansperf")
 ```
 
-## Example
+## Ways of Working
 
-This is a basic example which shows you how to solve a common problem:
+### Development Roadmap
+
+During the project meeting 28. June, it was agreed to proceed as
+follows:
+
+1.  implement the ICAO GANP KPI catalogue (step-by-step) with a focus on
+    the BRA-EUR indicators
+2.  augment KPIs with PBWG variants (as far as practicable)
+3.  advance state-of-the-art by adding new (and advanced) methods,
+    e.g. trajectory processing
+4.  any future development idea
+
+### Reduce Overhead - Fail Early
+
+We try to organise the development through issues (in github). For each
+issue, we branch! When merging, cross-reference issue.
+
+## How to Use This Package
+
+This is a placeholder. It will go into other vignettes at a later point
+in time.
 
 ``` r
 library(ansperf)
 ## basic example code
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
+## How to Update the README
+
+We work with `README.Rmd` instead of just `README.md`. This allows to
+include R chunks like the following:
 
 ``` r
 summary(cars)
@@ -50,8 +72,9 @@ summary(cars)
 #>  Max.   :25.0   Max.   :120.00
 ```
 
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date. `devtools::build_readme()` is handy for this.
+But it requires to still need to render `README.Rmd` regularly with a
+view to keep `README.md` up-to-date. `devtools::build_readme()` is handy
+for this. Run this, to update the README.Rmd –\> README.md. Then push!
 
 You can also embed plots, for example:
 

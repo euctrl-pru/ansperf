@@ -15,3 +15,6 @@ greeting phrase with name
 \description{
 hello_world returns greeting with name
 }
+\examples{
+hello_world("Rainer")
+}

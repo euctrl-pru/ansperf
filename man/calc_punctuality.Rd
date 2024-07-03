@@ -4,13 +4,19 @@
 \alias{calc_punctuality}
 \alias{check_punc_vars}
 \alias{add_delay_and_dlygrp}
+\alias{pivot_daily_dly_by_grp}
+\alias{calc_earlylatewithin_bins}
 \title{Calculate arrival or departure punctuality}
 \usage{
-calc_punctuality(.apdf)
+calc_punctuality(.apdf, .apt)
 
 check_punc_vars(.apdf)
 
 add_delay_and_dlygrp(.apdf)
+
+pivot_daily_dly_by_grp(.dlys, .dly_order = dly_order)
+
+calc_earlylatewithin_bins(.dlys_wide)
 }
 \arguments{
 \item{.apdf}{}

@@ -16,14 +16,16 @@
 #' \dontrun{
 #' mickey documentation needed
 #' }
-calc_punctuality <- function(.apdf){
+calc_punctuality <- function(.apdf, .apt){
   # check apdf version
   apdf_version <- check_punc_vars(.apdf)
   # full source
   if(apdf_version["SRC"]) {
     message("full apdf")
     punc <- .apdf |> 
-      add_delay_and_dlygrp()
+       dplyr::mutate(ICAO = .apt) |> 
+       add_delay_and_dlygrp() |> 
+       append_dof()
   }else{
     message("arrival and departure flavour to be developed")  
     punc <- NULL
@@ -32,6 +34,7 @@ calc_punctuality <- function(.apdf){
 }
 
 #' @rdname calc_punctuality
+#'
 check_punc_vars <- function(.apdf){
   # check apdf
   apdf_version <- c(
@@ -91,29 +94,33 @@ dly_order <-   c(
   ,"[60,INF)"
 )
 
+#' @rdname calc_punctuality
+#' @export
 pivot_daily_dly_by_grp <- function(.dlys, .dly_order = dly_order){
   tmp <- .dlys  |>  
-    dplyr::select(ICAO, DATE = DOF, PHASE, BLOCK_DLY, DLY_GRP) |> 
-    tidyr::pivot_wider(id_cols = c("ICAO","DATE","PHASE"),
+    dplyr::select(ICAO, DOF, PHASE, BLOCK_DLY, DLY_GRP) |> 
+    tidyr::pivot_wider(id_cols = c("ICAO","DOF","PHASE"),
                        names_from = "DLY_GRP",
                        values_from = "BLOCK_DLY",
                        values_fn = function(x) sum(!is.na(x))
                        , values_fill = 0
     ) |> 
     dplyr::mutate(VALID = rowSums(dplyr::across(where(is.numeric))) ) |> 
-    dplyr::select(ICAO, DATE, PHASE, VALID, any_of(dly_order))
+    dplyr::select(ICAO, DOF, PHASE, VALID, any_of(dly_order))
   
   # check if groups exist
   missing_cols <- setdiff(dly_order, colnames(tmp))
   if(length(missing_cols) > 0){
     tmp[missing_cols] <- 0    # add missing columns and set to zero
     tmp <- tmp |>            # order them in desired sequence
-      dplyr::select(ICAO, DATE, PHASE, VALID, all_of(dly_order))
+      dplyr::select(ICAO, DOF, PHASE, VALID, all_of(dly_order))
   }
   return(tmp)
 }
 
 # Early (-15,-5]","Early (-5,0]","Late (0,5)","Late [5,15)","Within (-5,5)","Within (-15,15)"
+#' @rdname calc_punctuality
+#' @export
 calc_earlylatewithin_bins <- function(.dlys_wide){
   tmp <- .dlys_wide |> 
     dplyr::mutate(

@@ -7,7 +7,7 @@
 hello_world(.name)
 }
 \arguments{
-\item{.name}{}
+\item{.name}{the addressee of the greeting}
 }
 \value{
 greeting phrase with name

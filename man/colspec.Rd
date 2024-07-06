@@ -3,7 +3,7 @@
 \docType{data}
 \name{colspec}
 \alias{colspec}
-\title{GANP colspec from APDF --------------------------------------------------}
+\title{GANP colspec from APDF}
 \format{
 An object of class \code{col_spec} of length 3.
 }
@@ -11,6 +11,6 @@ An object of class \code{col_spec} of length 3.
 colspec
 }
 \description{
-GANP colspec from APDF --------------------------------------------------
+define col naming convention for APDF data
 }
 \keyword{datasets}

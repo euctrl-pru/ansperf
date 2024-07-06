@@ -36,11 +36,14 @@ setup packagedown
 Edit your README.Rmd file
 Build your README.md file by running devtools::build_readme() in the R console
 
+setup testthat
+usethis::use_testthat(edition = 3) # make sure e3
+
 create functions
 * usethis::use_r("function-name-file")
 * CTRL+SHIFT+b (to build package)
 * CTRL+SHIFT+l (to load and test function)
-
+* CTRL+SHIFT+E to check all
 To build a Source Package do the following:
 
     Create a new folder tmp

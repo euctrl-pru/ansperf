@@ -6,6 +6,9 @@
 \usage{
 read_apdf(.apt)
 }
+\arguments{
+\item{.apt}{ICAO location indicator of airport}
+}
 \description{
 read the APDF file
 }

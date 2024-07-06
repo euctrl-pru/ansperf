@@ -1,6 +1,6 @@
 #' hello_world returns greeting with name
 #'
-#' @param .name 
+#' @param .name the addressee of the greeting
 #'
 #' @return greeting phrase with name
 #' @export

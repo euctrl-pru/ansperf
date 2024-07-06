@@ -8,6 +8,8 @@ load_apdf(.apt, .trim = TRUE)
 }
 \arguments{
 \item{.apt}{character of airport location indicator, either EGLL, LSZH, or LTFM}
+
+\item{.trim}{boolean to remove superflous columns from supplied tibble}
 }
 \value{
 tibble of APDF data set
@@ -16,7 +18,7 @@ tibble of APDF data set
 Load example APDF data for an airport
 }
 \examples{
-#'\dontrun{
+\dontrun{
 ds <- load_apdf("LSZH")
 }
 }

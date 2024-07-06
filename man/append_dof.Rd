@@ -7,7 +7,7 @@
 append_dof(.flts)
 }
 \arguments{
-\item{.flts}{}
+\item{.flts}{tibble of flights with a column BLOCK_TIME}
 }
 \value{
 tibble with appended DOF column

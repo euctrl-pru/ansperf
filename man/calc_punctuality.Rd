@@ -8,7 +8,7 @@
 \alias{calc_earlylatewithin_bins}
 \title{Calculate arrival or departure punctuality}
 \usage{
-calc_punctuality(.apdf)
+calc_punctuality(.apdf, .apt)
 
 check_punc_vars(.apdf)
 

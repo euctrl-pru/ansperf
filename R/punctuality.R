@@ -16,14 +16,16 @@
 #' \dontrun{
 #' mickey documentation needed
 #' }
-calc_punctuality <- function(.apdf){
+calc_punctuality <- function(.apdf, .apt){
   # check apdf version
   apdf_version <- check_punc_vars(.apdf)
   # full source
   if(apdf_version["SRC"]) {
     message("full apdf")
     punc <- .apdf |> 
-      add_delay_and_dlygrp()
+       dplyr::mutate(ICAO = .apt) |> 
+       add_delay_and_dlygrp() |> 
+       append_dof()
   }else{
     message("arrival and departure flavour to be developed")  
     punc <- NULL
@@ -112,8 +114,7 @@ pivot_daily_dly_by_grp <- function(.dlys, .dly_order = dly_order){
     dplyr::mutate(VALID = rowSums(dplyr::across(dplyr::where(is.numeric))) ) |> 
     dplyr::select(.data$ICAO, .data$DATE, .data$PHASE
                   , .data$VALID, dplyr::any_of(dly_order)
-                  )
-  
+                  )  
   # check if groups exist
   missing_cols <- setdiff(dly_order, colnames(tmp))
   if(length(missing_cols) > 0){
@@ -132,6 +133,7 @@ pivot_daily_dly_by_grp <- function(.dlys, .dly_order = dly_order){
 #' Early (-15,-5]","Early (-5,0]","Late (0,5)","Late [5,15)","Within (-5,5)","Within (-15,15)"
 #' @param .dlys_wide summary pivot tibble with delays in wide format
 #' @importFrom rlang .data
+#' @export
 calc_earlylatewithin_bins <- function(.dlys_wide){
   tmp <- .dlys_wide |> 
     dplyr::mutate(

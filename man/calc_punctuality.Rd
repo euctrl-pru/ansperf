@@ -19,10 +19,18 @@ pivot_daily_dly_by_grp(.dlys, .dly_order = dly_order)
 calc_earlylatewithin_bins(.dlys_wide)
 }
 \arguments{
-\item{.apdf}{}
+\item{.apdf}{APDF tibble}
+
+\item{.dlys}{tible of delays}
+
+\item{.dly_order}{vector of sorted ordering}
+
+\item{.dlys_wide}{summary pivot tibble with delays in wide format}
 }
 \value{
 tibble of results
+
+apdf_version vector of boolean flags for format version
 }
 \description{
 What this set of functions should do:
@@ -31,6 +39,8 @@ What this set of functions should do:
 \item add the delay and delay group
 \item calculate the punctuality per phase
 }
+
+Early (-15,-5]","Early (-5,0]","Late (0,5)","Late [5,15)","Within (-5,5)","Within (-15,15)"
 }
 \examples{
 \dontrun{

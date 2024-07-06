@@ -6,6 +6,9 @@
 \usage{
 make_nice_names_apdf(.df)
 }
+\arguments{
+\item{.df}{APDF tibble/dataframe}
+}
 \description{
-nice names
+utility function to recode/rename column names
 }

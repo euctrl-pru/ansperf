@@ -6,6 +6,9 @@
 \usage{
 trim_ganp_cols(.ds)
 }
+\arguments{
+\item{.ds}{tibble with APDF variables}
+}
 \description{
 extract cols from APDF
 }

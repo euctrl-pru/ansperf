@@ -1,12 +1,13 @@
 #' Load example APDF data for an airport
 #'
 #' @param .apt character of airport location indicator, either EGLL, LSZH, or LTFM
+#' @param .trim boolean to remove superflous columns from supplied tibble
 #'
 #' @return tibble of APDF data set
 #' @export
 #'
 #' @examples
-#' #'\dontrun{
+#' \dontrun{
 #' ds <- load_apdf("LSZH")
 #' }
 load_apdf <- function(.apt, .trim = TRUE){
@@ -20,6 +21,7 @@ load_apdf <- function(.apt, .trim = TRUE){
 
 #' read the APDF file
 #' 
+#' @param .apt ICAO location indicator of airport
 read_apdf <- function(.apt){
   fn <- list.files("./data-src", pattern = .apt, full.names = TRUE)
   ds <- arrow::read_parquet(fn) |> tibble::as_tibble()
@@ -28,18 +30,22 @@ read_apdf <- function(.apt){
 
 #' nice names
 #' 
-# utility function to recode/rename column names
+#' utility function to recode/rename column names
+#' 
+#' @param .df APDF tibble/dataframe
+#' @importFrom rlang .data
+
 make_nice_names_apdf <- function(.df){
   rn_df <- .df
   oldnames <- names(rn_df)
   newnames <- gsub(pattern = "(AP_C_)|(AC_)|(_ICAO)|(_UTC)|(_CROSS)|(EA|IN)", replacement = "", x = oldnames)
   names(rn_df) <- newnames
-  rn_df |> dplyr::rename(PHASE = SRC_PHASE, TYPE = ARCTYP)
+  rn_df |> dplyr::rename(PHASE = .data$SRC_PHASE, TYPE = .data$ARCTYP)
 }
 
-#' GANP colspec from APDF --------------------------------------------------
+#' GANP colspec from APDF
 #' 
-# define col naming convention for APDF data 
+#' define col naming convention for APDF data 
 colspec <- readr::cols_only(
     AP_C_FLTID      = readr::col_character(),
     AP_C_REG        = readr::col_character(),
@@ -67,23 +73,27 @@ colspec <- readr::cols_only(
   )
 
 #' extract cols from APDF
+#' @param .ds tibble with APDF variables
+#' @importFrom rlang .data
 trim_ganp_cols <- function(.ds){
   ds <- .ds |> dplyr::select(
-    AP_C_FLTID,
-    AP_C_REG,
-    ADEP_ICAO,
-    ADES_ICAO,
-    MVT_TIME_UTC,
-    BLOCK_TIME_UTC,
-    SCHED_TIME_UTC,
-    AP_C_FLTRUL,
-    ARCTYP,
-    AC_CLASS,
-    AP_C_RWY,
-    AP_C_STND,
-    SRC_PHASE,
-    C40_CROSS_TIME, C40_CROSS_LAT, C40_CROSS_LON, C40_CROSS_FL, C40_BEARING,
-    C100_CROSS_TIME, C100_CROSS_LAT, C100_CROSS_LON,C100_CROSS_FL, C100_BEARING
+    .data$AP_C_FLTID,
+    .data$AP_C_REG,
+    .data$ADEP_ICAO,
+    .data$ADES_ICAO,
+    .data$MVT_TIME_UTC,
+    .data$BLOCK_TIME_UTC,
+    .data$SCHED_TIME_UTC,
+    .data$AP_C_FLTRUL,
+    .data$ARCTYP,
+    .data$AC_CLASS,
+    .data$AP_C_RWY,
+    .data$AP_C_STND,
+    .data$SRC_PHASE,
+    .data$C40_CROSS_TIME, .data$C40_CROSS_LAT, .data$C40_CROSS_LON, 
+    .data$C40_CROSS_FL, .data$C40_BEARING,
+    .data$C100_CROSS_TIME, .data$C100_CROSS_LAT, .data$C100_CROSS_LON,
+    .data$C100_CROSS_FL, .data$C100_BEARING
   )
   return(ds)
 }

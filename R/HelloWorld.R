@@ -6,7 +6,7 @@
 #' @export
 #'
 #' @examples
-#' hello_world("Rainer")
+#' hello_world("Lord Turtle")
 hello_world <- function(.name){
   greeting <- paste0("Hello, my highness ", .name, "!")
   return(greeting)

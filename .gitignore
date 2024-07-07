@@ -6,3 +6,4 @@ ansperf.Rcheck/
 ansperf*.tar.gz
 ansperf*.tgz
 docs
+inst/doc

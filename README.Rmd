@@ -11,73 +11,50 @@ knitr::opts_chunk$set(
   fig.path = "man/figures/README-",
   out.width = "100%"
 )
+library(gt)
 ```
 
-# Operational ANS Performance with R
+# ansperf
 
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of `{ansperf}` is to provide a enable interested stakeholders to undertake a standardised operational performance analysis in accordance with the ICAO Global Air Navigation Plan and/or variants used by the international performance benchmarking community.
+The general objective of air navigation services is to enable the "... safe, efficient, and orderly flow of air traffic."
+ICAO promotes further the use of a performance-based approach and encourages stakeholder to monitor and benchmark services.
+For this purpose a set of (global) key performance indicators (KPI) were established under the Global Air Navigation Plan. 
+These KPIs (and variants of them) are actively used by the performance benchmarking community.
 
-The package is based on the work of the Performance Section of DECEA Brazil and the Performance Review Unit of EUROCONTROL. 
+This package is jointly developed by the Department of Airspace Control (DECEA) und EUROCONTROL.
+Performance groups of both organisations are committed to further harmonise the use of the KPIs as part of the bi-lateral and multi-lateral/international work.
 
-This is an initial setup. Thus, the content is heavily under development.
-Please come back for any updates.
+The `{ansperf}` package implements the common KPIs and supporting metrics in `R`.
+
+## GANP KPIs
+
+The `performance framework` of the GANP lists the following KPIs (c.f. https://www4.icao.int/ganpportal/ASBU/KPI) and whether `{ansperf}` has it implemented:
+
+```{r}
+load("./data/kpi_data_reqs.rda")
+
+gt::gt(kpi_data_reqs)
+```
+
 
 ## Installation
 
-You can install the development version of the `{ansperf}` package from [GitHub](https://github.com/) with:
+You can install the development version of ansperf from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
 devtools::install_github("euctrl-pru/ansperf")
 ```
 
-## Ways of Working
+## Example
 
-### Development Roadmap
-
-During the project meeting 28. June, it was agreed to proceed as follows:
-
-1. implement the ICAO GANP KPI catalogue (step-by-step) with a focus on the BRA-EUR indicators
-1. augment KPIs with PBWG variants (as far as practicable)
-1. advance state-of-the-art by adding new (and advanced) methods, e.g. trajectory processing
-1. any future development idea
-
-### Reduce Overhead - Fail Early
-
-We try to organise the development through issues (in github).
-For each issue, we branch!
-When merging, cross-reference issue.
-
-## How to Use This Package
-
-This is a placeholder. It will go into other vignettes at a later point in time.
+This is a basic example which shows you how to solve a common problem:
 
 ```{r example}
 library(ansperf)
 ## basic example code
 ```
 
-
-## How to Update the README
-
-We work with `README.Rmd` instead of just `README.md`.
-This allows to include R chunks like the following:
-
-```{r cars}
-summary(cars)
-```
-
-But it requires to still need to render `README.Rmd` regularly with a view to keep `README.md` up-to-date. 
-`devtools::build_readme()` is handy for this.
-Run this, to update the README.Rmd --> README.md. Then push!
-
-You can also embed plots, for example:
-
-```{r pressure, echo = FALSE}
-plot(pressure)
-```
-
-In that case, don't forget to commit and push the resulting figure files, so they display on GitHub and CRAN.

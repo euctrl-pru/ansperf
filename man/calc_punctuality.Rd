@@ -21,6 +21,8 @@ calc_earlylatewithin_bins(.dlys_wide)
 \arguments{
 \item{.apdf}{APDF tibble}
 
+\item{.apt}{study airport of interest}
+
 \item{.dlys}{tible of delays}
 
 \item{.dly_order}{vector of sorted ordering}

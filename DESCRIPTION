@@ -19,5 +19,11 @@ Imports:
     tidyr
 URL: https://euctrl-pru.github.io/ansperf/
 Suggests: 
+    knitr,
+    rmarkdown,
     testthat (>= 3.0.0)
+VignetteBuilder: knitr
 Config/testthat/edition: 3
+Depends: 
+    R (>= 2.10)
+LazyData: true

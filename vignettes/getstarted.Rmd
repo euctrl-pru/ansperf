@@ -1,0 +1,23 @@
+---
+title: "getstarted"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{getstarted}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(ansperf)
+```
+
+Initial vignette skeleton initiated with usethis::use_vignette("nameofvignette").
+
+This package is cool.

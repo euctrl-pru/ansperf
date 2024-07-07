@@ -8,6 +8,7 @@
 #' * calculate the punctuality per phase
 #'
 #' @param .apdf tibble of data items 
+#' @param .apt study airport of interest
 #'
 #' @return tibble of results
 #' @export

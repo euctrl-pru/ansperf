@@ -9,6 +9,7 @@
 ^\.github$
 ^README\.Rmd$
 ^LICENSE\.md$
-
 #non-standard stuff by RQ
 ^_xREADME-SETUP
+
+^data-raw$

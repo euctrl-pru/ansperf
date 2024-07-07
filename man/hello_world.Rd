@@ -16,5 +16,5 @@ greeting phrase with name
 hello_world returns greeting with name
 }
 \examples{
-hello_world("Rainer")
+hello_world("Lord Turtle")
 }

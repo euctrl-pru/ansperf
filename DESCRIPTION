@@ -14,9 +14,12 @@ Imports:
     arrow,
     dplyr,
     lubridate,
+    readr,
     rlang,
+    stringr,
     tibble,
-    tidyr
+    tidyr,
+    usethis
 URL: https://euctrl-pru.github.io/ansperf/
 Suggests: 
     testthat (>= 3.0.0)

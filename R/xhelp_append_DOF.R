@@ -11,7 +11,18 @@
 #' }
 #' @importFrom rlang .data
 append_dof <- function(.flts){
-  if(c("BLOCK_TIME") %in% colnames(.flts)){
-    updated_df <- .flts |> dplyr::mutate(DOF = lubridate::date(.data$BLOCK_TIME))
+  
+  apdf_time_vars <- c("BLOCK_TIME", "MVT_TIME")
+  
+  if( any( apdf_time_vars %in% colnames(.flts) ) ){
+    updated_df <- .flts |> 
+      dplyr::mutate(
+        DOF = dplyr::case_when(
+          !is.na(BLOCK_TIME) ~ lubridate::date(BLOCK_TIME)
+         , is.na(BLOCK_TIME) & !is.na(MVT_TIME) ~ lubridate::date(MVT_TIME)
+         , TRUE ~ as.Date(NA)
+         )
+      )
   }
+  updated_df
 }

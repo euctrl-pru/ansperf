@@ -10,10 +10,7 @@
 # Imports
 library(dplyr)
 library(dbscan)
-
-get_sectors_limits <- function(){
-  return(NULL)
-}
+# -----------------------------------------------------------------------------
 
 # -----------------------------------------------------------------------------
 # Function to calculate the entry sectors clustering based on DBSCAN method

@@ -1,3 +1,6 @@
+# source data for development - shared via file exchange
+data-src
+
 # History files
 .Rhistory
 .Rapp.history

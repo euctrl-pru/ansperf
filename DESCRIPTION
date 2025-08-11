@@ -4,12 +4,14 @@ Version: 0.0.0.9000
 Authors@R: 
     person("Rainer", "Koelle", , "rainer.koelle@eurocontrol.int", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0003-2810-1404"))
-Description: What the package does (one paragraph).
+Description: Tools to conduct an operational ANS performance analysis with R making use of the indicators developed under ICAO's GANP or used by PBWG and multiple bi-regional projects, e.g. Brazil-Europe.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
 Suggests: 
+    arrow,
+    gt,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 URL: https://euctrl-pru.github.io/ansperf/
@@ -18,4 +20,8 @@ Imports:
     ggplot2,
     lubridate,
     patchwork,
-    purrr
+    purrr,
+    rlang
+Depends: 
+    R (>= 3.5)
+LazyData: true

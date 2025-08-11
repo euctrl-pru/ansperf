@@ -17,11 +17,8 @@ Config/testthat/edition: 3
 URL: https://euctrl-pru.github.io/ansperf/
 Imports: 
     dplyr,
-    ggplot2,
-    lubridate,
-    patchwork,
-    purrr,
-    rlang
+    rlang,
+    tibble
 Depends: 
     R (>= 3.5)
 LazyData: true

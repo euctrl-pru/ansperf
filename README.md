@@ -16,9 +16,9 @@ The `{ansperf}` package implements the common KPIs and supporting metrics in `R`
 The `performance framework` of the GANP lists the following KPIs (c.f. https://www4.icao.int/ganpportal/ASBU/KPI) and whether `{ansperf}` has it implemented:
 
 ```{r, echo=FALSE}
-load("./data/kpi_data_reqs.rda")
+load("./data/data_ganp_kpi_reqs.rda")
 
-gt::gt(kpi_data_reqs) |> 
+gt::gt(data_ganp_kpi_reqs) |> 
   gt::sub_missing(missing_text = "")
 ```
 

@@ -7,6 +7,7 @@
 #' @param .trim boolean to remove superflous columns from supplied tibble
 #'
 #' @return tibble of APDF data set
+#' @rdname xloadapdf
 #' @export
 #'
 #' @examples
@@ -23,7 +24,8 @@ load_apdf <- function(.apt, .trim = TRUE){
   return(ds)
 }
 
-#' read the APDF file
+#' @rdname xloadapdf
+#' @title read the APDF file
 #'
 #' @param .apt ICAO location indicator of airport
 read_apdf <- function(.apt){
@@ -32,9 +34,9 @@ read_apdf <- function(.apt){
   return(ds)
 }
 
-#' nice names
-#'
-#' utility function to recode/rename column names
+#' @rdname xloadapdf
+#' @title nice names
+#' @description utility function to recode/rename column names
 #'
 #' @param .df APDF tibble/dataframe
 #' @importFrom rlang .data
@@ -47,9 +49,10 @@ make_nice_names_apdf <- function(.df){
   rn_df |> dplyr::rename(PHASE = .data$SRC_PHASE, TYPE = .data$ARCTYP)
 }
 
-#' GANP colspec from APDF
+#' @rdname xloadapdf
+#' @title GANP colspec from APDF
 #'
-#' define col naming convention for APDF data
+#' @description define col naming convention for APDF data
 colspec <- readr::cols_only(
   AP_C_FLTID      = readr::col_character(),
   AP_C_REG        = readr::col_character(),
@@ -76,7 +79,9 @@ colspec <- readr::cols_only(
   C100_BEARING    = readr::col_double()
 )
 
-#' extract cols from APDF
+#' @rdname xloadapdf
+#' @title extract cols from APDF
+#'
 #' @param .ds tibble with APDF variables
 #' @importFrom rlang .data
 trim_ganp_cols <- function(.ds){

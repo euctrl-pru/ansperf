@@ -11,8 +11,8 @@
 <script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Operational ANS Performance with R">
-<meta name="description" content="What the package does (one paragraph).">
-<meta property="og:description" content="What the package does (one paragraph).">
+<meta name="description" content="Tools to conduct an operational ANS performance analysis with R making use of the indicators developed under ICAO's GANP or used by PBWG and multiple bi-regional projects, e.g. Brazil-Europe.">
+<meta property="og:description" content="Tools to conduct an operational ANS performance analysis with R making use of the indicators developed under ICAO's GANP or used by PBWG and multiple bi-regional projects, e.g. Brazil-Europe.">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -48,6 +48,32 @@
 <div class="page-header"><h1 id="ansperf">ansperf<a class="anchor" aria-label="anchor" href="#ansperf"></a>
 </h1></div>
 <p>Workspace for the development of a GANP/PBWG/BRA-EUR/CHN-EUR informed package.</p>
+<p>The general objective of air navigation services is to enable the “… safe, efficient, and orderly flow of air traffic.” ICAO promotes further the use of a performance-based approach and encourages stakeholder to monitor and benchmark services. For this purpose a set of (global) key performance indicators (KPI) were established under the Global Air Navigation Plan. These KPIs (and variants of them) are actively used by the performance benchmarking community.</p>
+<p>This package is jointly developed by the Department of Airspace Control (DECEA) und EUROCONTROL. Performance groups of both organisations are committed to further harmonise the use of the KPIs as part of the bi-lateral and multi-lateral/international work.</p>
+<p>The <a href="https://euctrl-pru.github.io/ansperf/">ansperf</a> package implements the common KPIs and supporting metrics in <code>R</code>.</p>
+<div class="section level2">
+<h2 id="ganp-kpis">GANP KPIs<a class="anchor" aria-label="anchor" href="#ganp-kpis"></a>
+</h2>
+<p>The <code>performance framework</code> of the GANP lists the following KPIs (c.f. <a href="https://www4.icao.int/ganpportal/ASBU/KPI" class="external-link uri">https://www4.icao.int/ganpportal/ASBU/KPI</a>) and whether <a href="https://euctrl-pru.github.io/ansperf/">ansperf</a> has it implemented:</p>
+<p>```{r, echo=FALSE} load(“./data/data_ganp_kpi_reqs.rda”)</p>
+<p>gt::gt(data_ganp_kpi_reqs) |&gt; gt::sub_missing(missing_text = ““)</p>
+<pre><code>
+
+## Installation
+
+You can install the development version of ansperf from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("euctrl-pru/ansperf")</code></pre>
+</div>
+<div class="section level2">
+<h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
+</h2>
+<p>This is a basic example which shows you how to solve a common problem:</p>
+<p><code>{r example} library(ansperf) ## basic example code</code></p>
+<p>TO BE CONTINUED …..</p>
+</div>
 </div>
   </main><aside class="col-md-3"><div class="license">
 <h2 data-toc-skip>License</h2>

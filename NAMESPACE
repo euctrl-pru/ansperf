@@ -2,4 +2,5 @@
 
 export(load_apdf)
 export(x_hello_world)
+importFrom(readr,read_csv)
 importFrom(rlang,.data)

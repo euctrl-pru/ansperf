@@ -1,0 +1,28 @@
+#' Sample APDF data
+#'
+#' A dataset containing ...
+#'
+#' @format A data frame with ... rows and ... variables:
+#' \describe{
+#'   \item{ADEP}{Aerodrome of DEParture (character)}
+#'   \item{ADES}{Aerodrome of DEStination (character)}
+#'   \item{FLTID}{FLighT IDentification (character)}
+#'   \item{TYPE}{aircraft type (character)}
+#'   \item{CLASS}{aircraft weight turbulence and engine/propulsion label (character)}
+#'   \item{PHASE}{label decoding ARRival or DEParture (character) - either ARR or DEP}
+#'   \item{FLTRUL}{flight rule (character), either I, V, Y, or Z}
+#'   \item{STND}{parking position of aircraft (character/alphanumeric)}
+#'   \item{RWY}{landing or arrival runway in ICAO formatting - 2digits and possible Center, Left, Right}
+#'   \item{MVT_TIME}{actual movemement time, either actual take-off time ATOT or landing time ALDT (POSIXct)}
+#'   \item{BLOCK_TIME}{actual block time - either actual in-block or off-block time (POSIXct)}
+#'   \item{SCHED_TIME}{scheduled block time - either scheduled departure or arrival time (POSIXct)}
+#'   \item{C40_TIME}{time of crossing the 40NM range (POSIXct)}
+#'   \item{C40_BRG}{bearing from aerodrome (integer)}
+#'   \item{C40_LAT}{latitude of 40NM crossing (decimal degree)}
+#'   \item{C40_LON}{longitude of 40NM crossing (decimal degree)}
+#'   \item{C100_TIME}{time of crossing the 100NM range (POSIXct)}
+#'   \item{C100_BRG}{bearing from aerodrome (integer)}
+#'   \item{C100_LAT}{latitude of 100NM crossing (decimal degree)}
+#'   \item{C100_LON}{longitude of 100NM crossing (decimal degree)}
+#' }
+"data_apdf_sample"

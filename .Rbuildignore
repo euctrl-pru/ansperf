@@ -9,6 +9,5 @@
 ^data-src$
 
 ^x-hide
-^R/kpi01.R
 ^R/xxhelp-check-vars.R
 ^R/data_apdf_sample.Rß

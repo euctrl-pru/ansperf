@@ -1,18 +1,16 @@
-#' Lauding a person
+#' A cool salutation of a guest
 #'
-#' Saluting a to-be greated person.
+#' @param greeted_actor the person to greet
 #'
-#' @param greeted_actor the person's name to be greeted
+#' @return salute phrase
 #'
-#' @return the salutation
 #' @export
 #'
-#' @examples
-#' x_hello_world("Master")
-#'
 x_hello_world <- function(greeted_actor){
+  tt     <- c("Master","King", "My Lord", "Highness")
+  pick   <- sample(tt, 1)
 
-  salute <- paste0("Welcome, dear Highness, ", greeted_actor)
+  salute <- paste0("Welcome, dear ", pick, " ", greeted_actor)
 
   return(salute)
 }

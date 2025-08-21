@@ -2,20 +2,16 @@
 % Please edit documentation in R/x-hello-world.R
 \name{x_hello_world}
 \alias{x_hello_world}
-\title{Lauding a person}
+\title{A cool salutation of a guest}
 \usage{
 x_hello_world(greeted_actor)
 }
 \arguments{
-\item{greeted_actor}{the person's name to be greeted}
+\item{greeted_actor}{the person to greet}
 }
 \value{
-the salutation
+salute phrase
 }
 \description{
-Saluting a to-be greated person.
-}
-\examples{
-x_hello_world("Master")
-
+A cool salutation of a guest
 }

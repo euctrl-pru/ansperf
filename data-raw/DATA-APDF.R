@@ -3,8 +3,11 @@
 lszh <- load_apdf("LSZH")
 
 data_apdf_sample <- lszh |>
-  mutate(MONTH = lubridate::month(MVT_TIME)) |>
+  dplyr::mutate(MONTH = lubridate::month(MVT_TIME)) |>
   dplyr::group_by(MONTH) |>
-  dplyr::slice_sample(n = 100)
+  dplyr::slice_sample(n = 100) |>
+  dplyr::ungroup() |>
+  dplyr::select(-MONTH)
 
-usethis::use_data(data_apdf_sample, overwrite = TRUE)
+# deactivated to avoid erronuous write out/update!
+# usethis::use_data(data_apdf_sample, overwrite = TRUE)

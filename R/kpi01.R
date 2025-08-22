@@ -1,5 +1,15 @@
+# NOTE - based on Jean's flow proposal, let's organise the indicator calculation in a series of steps
+# 1. reshape - "decoding" of input data to "standardised" (APDF) data format
+# 2. prepare - any preparatory transformations before establising the analytic data
+# 3. establish analytic - code the analytic data set (PBWG convention)
+# 3. calculate - calculate the performance metrics output given the PBWG conventions
 
-
+# FOR A START - do not focus too much on the "reshape" step.
+# the shared data-src is in APDF format := required formats, column names, etc.
+# notice that
+## ---- BLOCK_TIMES turn into AOBT or AIBT,
+## ---- MVT_TIMES into ATOT or ALDT, and
+## ---- SCHED_TIMES into SBOT or SIBT
 
 # Calculates the delay for each flight
 #' Title

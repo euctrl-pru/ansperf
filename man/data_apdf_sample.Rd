@@ -10,6 +10,7 @@ A data frame with ... rows and ... variables:
 \item{ADEP}{Aerodrome of DEParture (character)}
 \item{ADES}{Aerodrome of DEStination (character)}
 \item{FLTID}{FLighT IDentification (character)}
+\item{REG}{REGistration (character)}
 \item{TYPE}{aircraft type (character)}
 \item{CLASS}{aircraft weight turbulence and engine/propulsion label (character)}
 \item{PHASE}{label decoding ARRival or DEParture (character) - either ARR or DEP}
@@ -23,10 +24,13 @@ A data frame with ... rows and ... variables:
 \item{C40_BRG}{bearing from aerodrome (integer)}
 \item{C40_LAT}{latitude of 40NM crossing (decimal degree)}
 \item{C40_LON}{longitude of 40NM crossing (decimal degree)}
+\item{C40_FL}{longitude of 40NM crossing (decimal degree)}
 \item{C100_TIME}{time of crossing the 100NM range (POSIXct)}
 \item{C100_BRG}{bearing from aerodrome (integer)}
 \item{C100_LAT}{latitude of 100NM crossing (decimal degree)}
 \item{C100_LON}{longitude of 100NM crossing (decimal degree)}
+\item{C100_FL}{longitude of 100NM crossing (decimal degree)}
+
 }
 }
 \usage{

@@ -1,7 +1,30 @@
 #' @importFrom stats quantile
 #'
-build_txxt_reference <- function(refdf){
+build_txxt_reference <- function(refdf, variant = NULL, ref_period = NULL){
+  # variant and ref_period given?
+  stopifnot("required parameters 'variant' and/or 'reference period' missing!" = !is.null(variant), !is.null(ref_period))
+  stopifnot("wrong variant!" = variant %in% c("GANP", "PBWG"))
+  # TO DO - CHECK refdf INPUT and other stuff
+  # ....
 
+  # reshape the input data
+  df_clean <- refdf |>
+    reshape_ref_txxt() |>
+    prepare_ref_txxt()
+
+  # GANP - 20th percentile
+  if(variant %in% "GANP"){
+   txxt_ref <- df_clean |>
+     establish_ref_txxt_ganp(ref_period)
+  }
+
+  # PBWG - average of 5th and 15th percentile
+  if(variant %in% "PBWG"){
+    message("PBWG variant not yet implemented. Come back soon!")
+    return() # empty return
+  }
+
+  return(txxt_ref)
 }
 
 reshape_ref_txxt <- function(ref_df){
@@ -35,17 +58,42 @@ prepare_ref_txxt <- function(payload){
   return(refs_raw)
 }
 
-establish_reference_ganp <- function(refs_prep, ref_year){
+establish_ref_txxt_ganp <- function(refs_prep, ref_period){
   this_refs <- refs_prep |>
-    dplyr::filter(lubridate::year(.data$BLOCK_TIME) %in% ref_year) |>
+    dplyr::filter(lubridate::year(.data$BLOCK_TIME) %in% .data$ref_period) |>
     dplyr::group_by(.data$ICAO, .data$PHASE, .data$STND, .data$RWY) |>      # group to catch multiple airports/phases
     dplyr::reframe(
-       REF_GANP   = stats::quantile(.data$TXXT, probs = 0.2)
-      ,REF_YEAR   = ref_year
+       REF_GANP   = stats::quantile(.data$TXXT, probs = 0.2, na.rm = TRUE)
+      ,REF_YEAR   = .data$ref_period
       ,GANP_VALID = sum( (!is.na(.data$STND) | !is.na(.data$RWY)) & !is.na(.data$TXXT) )
       ,GANP_SMPL  = dplyr::n()
 
       )
 
   return(this_refs)
+}
+
+establish_ref_txxt_pbwg <- function(refs_prep, ref_period){
+  this_refs <- refs_prep |>
+    dplyr::filter(lubridate::year(.data$BLOCK_TIME) %in% ref_period) |>
+    dplyr::group_by(.data$ICAO, .data$PHASE, .data$STND, .data$RWY) |>
+    # determine the subsample of 5th and 15th percentile |>
+    dplyr::mutate(
+        PBWG_P05   = stats::quantile(.data$TXXT, probs = 0.05, na.rm = TRUE)
+      , PBWG_P15   = stats::quantile(.data$TXXT, probs = 0.15, na.rm = TRUE)
+      # between: left <= x <= right
+      , is_P05_P15 = dplyr::between(.data$TXXT, .data$PBWG_P05, .data$PBWG_P15)
+    ) |>
+    dplyr::reframe(
+        PBWG_P05   = unique(.data$PBWG_P05)
+      , PBWG_P15   = unique(.data$PBWG_P15)
+      , PBWG_VALID = sum( (!is.na(.data$STND) | !is.na(.data$RWY)) & !is.na(.data$TXXT) )
+      , PBWG_SMPL  = dplyr::n()
+      , PBWG_P05P15= sum(.data$is_P05_P15)
+      , PBWG_REF_P05P15 = stats::quantile(.data$TXXT[.data$is_P05_P15])
+      ) |>
+    dplyr::mutate(
+      PBWG_REF  = (.data$PBWG_P05 + .data$PBWG_P15) / 2      # average of
+      )
+   return(this_refs)
 }

@@ -1,3 +1,9 @@
+#' Establish the reference data set for the additional taxi-in/taxi-out method.
+#'
+#' @param refdf data frame/tibble of taxi-times serving as reference data set
+#' @param variant of the determination of the reference times (i.e., GANP, PBWG)
+#' @param ref_period the reference period (currently: year)
+#'
 #' @importFrom stats quantile
 #'
 build_txxt_reference <- function(refdf, variant = NULL, ref_period = NULL){
@@ -20,7 +26,13 @@ build_txxt_reference <- function(refdf, variant = NULL, ref_period = NULL){
 
   # PBWG - average of 5th and 15th percentile
   if(variant %in% "PBWG"){
-    message("PBWG variant not yet implemented. Come back soon!")
+    txxt_ref <- df_clean |>
+      establish_ref_txxt_pbwg(ref_period)
+  }
+
+  # combined reference data set
+  if(variant %in% "GANPPBWG"){
+    message("GANPPBWG variant not yet implemented. Come back soon!")
     return() # empty return
   }
 
@@ -73,6 +85,11 @@ establish_ref_txxt_ganp <- function(refs_prep, ref_period){
   return(this_refs)
 }
 
+#' @description
+#' The PBWG method uses the average of the sub-sample defined by the 5th and 15th percentile.
+#' This implementation labels the sample and counts the cases, both per grouping and for the subsample.
+#' PBWG considers a stand-grouping mechanism that requires additional prep work (or some sophisticated coding here - to be developed).
+#'
 establish_ref_txxt_pbwg <- function(refs_prep, ref_period){
   this_refs <- refs_prep |>
     dplyr::filter(lubridate::year(.data$BLOCK_TIME) %in% ref_period) |>
@@ -90,10 +107,10 @@ establish_ref_txxt_pbwg <- function(refs_prep, ref_period){
       , PBWG_VALID = sum( (!is.na(.data$STND) | !is.na(.data$RWY)) & !is.na(.data$TXXT) )
       , PBWG_SMPL  = dplyr::n()
       , PBWG_P05P15= sum(.data$is_P05_P15)
-      , PBWG_REF_P05P15 = stats::quantile(.data$TXXT[.data$is_P05_P15])
+      , PBWG_REF   = mean(.data$TXXT[.data$is_P05_P15])
       ) |>
     dplyr::mutate(
-      PBWG_REF  = (.data$PBWG_P05 + .data$PBWG_P15) / 2      # average of
+      PBWG_REF2   = (.data$PBWG_P05 + .data$PBWG_P15) / 2      # average of
       )
    return(this_refs)
 }

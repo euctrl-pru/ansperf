@@ -47,32 +47,269 @@
   <main id="main" class="col-md-9"><div class="section level1">
 <div class="page-header"><h1 id="ansperf">ansperf<a class="anchor" aria-label="anchor" href="#ansperf"></a>
 </h1></div>
+<!-- badges: start -->
+<!-- badges: end -->
 <p>Workspace for the development of a GANP/PBWG/BRA-EUR/CHN-EUR informed package.</p>
 <p>The general objective of air navigation services is to enable the “… safe, efficient, and orderly flow of air traffic.” ICAO promotes further the use of a performance-based approach and encourages stakeholder to monitor and benchmark services. For this purpose a set of (global) key performance indicators (KPI) were established under the Global Air Navigation Plan. These KPIs (and variants of them) are actively used by the performance benchmarking community.</p>
 <p>This package is jointly developed by the Department of Airspace Control (DECEA) und EUROCONTROL. Performance groups of both organisations are committed to further harmonise the use of the KPIs as part of the bi-lateral and multi-lateral/international work.</p>
 <p>The <a href="https://euctrl-pru.github.io/ansperf/">ansperf</a> package implements the common KPIs and supporting metrics in <code>R</code>.</p>
+<p>The project is in its active development phase and may change frequently.<br>
+Do not hesitate to reach out, if you have an interest in contributing, testing, or have any other question about the on-going developments.</p>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
+<p>You can install the development version of ansperf from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># install.packages("pak")</span></span>
+<span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="st">"euctrl-pru/ansperf"</span><span class="op">)</span></span></code></pre></div>
+</div>
 <div class="section level2">
 <h2 id="ganp-kpis">GANP KPIs<a class="anchor" aria-label="anchor" href="#ganp-kpis"></a>
 </h2>
 <p>The <code>performance framework</code> of the GANP lists the following KPIs (c.f. <a href="https://www4.icao.int/ganpportal/ASBU/KPI" class="external-link uri">https://www4.icao.int/ganpportal/ASBU/KPI</a>) and whether <a href="https://euctrl-pru.github.io/ansperf/">ansperf</a> has it implemented:</p>
-<p>```{r, echo=FALSE} load(“./data/data_ganp_kpi_reqs.rda”)</p>
-<p>gt::gt(data_ganp_kpi_reqs) |&gt; gt::sub_missing(missing_text = ““)</p>
-<pre><code>
-
-## Installation
-
-You can install the development version of ansperf from [GitHub](https://github.com/) with:
-
-``` r
-# install.packages("devtools")
-devtools::install_github("euctrl-pru/ansperf")</code></pre>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/load.html" class="external-link">load</a></span><span class="op">(</span><span class="st">"./data/data_ganp_kpi_reqs.rda"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#gt::gt(data_ganp_kpi_reqs) |&gt; </span></span>
+<span><span class="co">#  gt::sub_missing(missing_text = "")</span></span>
+<span><span class="fu">tinytable</span><span class="fu">::</span><span class="fu">tt</span><span class="op">(</span><span class="va">data_ganp_kpi_reqs</span><span class="op">)</span></span></code></pre></div>
+<table style="width:100%;" class="table">
+<colgroup>
+<col width="16%">
+<col width="16%">
+<col width="16%">
+<col width="16%">
+<col width="16%">
+<col width="16%">
+</colgroup>
+<thead><tr class="header">
+<th>KPI</th>
+<th>name</th>
+<th>data-basic</th>
+<th>data-advanced</th>
+<th>…5</th>
+<th>…6</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>data-type</td>
+<td>NA</td>
+<td>flight data</td>
+<td>ATFM data</td>
+<td>meta-data</td>
+<td>trajectory data</td>
+</tr>
+<tr class="even">
+<td>SYS</td>
+<td>system characterisation</td>
+<td>NA</td>
+<td>NA</td>
+<td>as required</td>
+<td>NA</td>
+</tr>
+<tr class="odd">
+<td>FLT</td>
+<td>flight related data</td>
+<td>ADEP, ADES</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr class="even">
+<td>KPI01</td>
+<td>departure punctuality</td>
+<td>STD/SOBT, AOBT</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr class="odd">
+<td>KPI02</td>
+<td>additional taxi-out time</td>
+<td>AOBT, ATOT, RWY, STND</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr class="even">
+<td>KPI03</td>
+<td>ATFM slot adherence</td>
+<td>ATOT</td>
+<td>CTOT</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr class="odd">
+<td>KPI04</td>
+<td>filed flight plan route extension</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>X (flight plan)</td>
+</tr>
+<tr class="even">
+<td>KPI05</td>
+<td>actual en-route extension</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>X (actual flown traj)</td>
+</tr>
+<tr class="odd">
+<td>KPI06</td>
+<td>en-route airspace capacity</td>
+<td>NA</td>
+<td>decl. cap. per sector/FIR</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr class="even">
+<td>KPI07</td>
+<td>en-route ATFM delay</td>
+<td>NA</td>
+<td>ETOT, CTOT</td>
+<td>sector/FIR assoc.</td>
+<td>NA</td>
+</tr>
+<tr class="odd">
+<td>KPI08</td>
+<td>add. time in terminal airspace</td>
+<td>ALDT, RWY, TYPE</td>
+<td>NA</td>
+<td>NA</td>
+<td>40/100NM pos. &amp; time</td>
+</tr>
+<tr class="even">
+<td>KPI09</td>
+<td>airport peak arrival capacity</td>
+<td>NA</td>
+<td>NA</td>
+<td>(max) arrival rates</td>
+<td>NA</td>
+</tr>
+<tr class="odd">
+<td>KPI10</td>
+<td>airport peak arrival throughput</td>
+<td>ALDT</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr class="even">
+<td>KPI11</td>
+<td>airport arrival capacity utilisation</td>
+<td>ALDT, ELDT</td>
+<td>NA</td>
+<td>arrival capacity</td>
+<td>NA</td>
+</tr>
+<tr class="odd">
+<td>KPI12</td>
+<td>airport/terminal ATFM delay</td>
+<td>NA</td>
+<td>ETOT, CTOT</td>
+<td>airport/TMA assoc.</td>
+<td>NA</td>
+</tr>
+<tr class="even">
+<td>KPI13</td>
+<td>additional taxi-in time</td>
+<td>ALDT, AIBT, RWY, STND</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr class="odd">
+<td>KPI14</td>
+<td>arrival punctuality</td>
+<td>STA/SIBT, AIBT</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr class="even">
+<td>KPI15</td>
+<td>flight time variability</td>
+<td>AOBT, ATOT, ALDT, AIBT</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr class="odd">
+<td>KPI16</td>
+<td>additional fuel burn</td>
+<td>based on KPI02, KPI13, KPI05, KPI08</td>
+<td>NA</td>
+<td>fuel burn per flight phase or fuel flow/burn data</td>
+<td>NA</td>
+</tr>
+<tr class="even">
+<td>KPI17</td>
+<td>level-off during climb</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>Level segments within 200NM</td>
+</tr>
+<tr class="odd">
+<td>KPI18</td>
+<td>level capping during cruise</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>Plan: Max (RFL) last plan, Actual: max cruise FL ; Ref city pair FL</td>
+</tr>
+<tr class="even">
+<td>KPI19</td>
+<td>level-off during descent</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>Level segments within 200NM</td>
+</tr>
+<tr class="odd">
+<td>KPI20</td>
+<td>number of aircraft accidents</td>
+<td>NA</td>
+<td>NA</td>
+<td>safety reporting</td>
+<td>NA</td>
+</tr>
+<tr class="even">
+<td>KPI21</td>
+<td>number of runway incursions</td>
+<td>NA</td>
+<td>NA</td>
+<td>safety reporting</td>
+<td>NA</td>
+</tr>
+<tr class="odd">
+<td>KPI22</td>
+<td>number of runway excursions</td>
+<td>NA</td>
+<td>NA</td>
+<td>safety reporting</td>
+<td>NA</td>
+</tr>
+<tr class="even">
+<td>KPI23</td>
+<td>Number of airprox/TCAS alert/loss of separation</td>
+<td>NA</td>
+<td>NA</td>
+<td>safety reporting</td>
+<td>NA</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="section level2">
 <h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
 </h2>
 <p>This is a basic example which shows you how to solve a common problem:</p>
-<p><code>{r example} library(ansperf) ## basic example code</code></p>
-<p>TO BE CONTINUED …..</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://euctrl-pru.github.io/ansperf/">ansperf</a></span><span class="op">)</span></span>
+<span><span class="co">## basic example code</span></span></code></pre></div>
+<p>The examples/getting started vignette will be built soon.</p>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="license">
